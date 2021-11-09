@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:personal_portfolio/constants.dart';
 import 'package:personal_portfolio/controllers/game_controller.dart';
+import 'package:personal_portfolio/views/budgetApp/budgetApp_view.dart';
 import 'package:personal_portfolio/views/game/game_end_page_view.dart';
 import 'package:personal_portfolio/views/game/game_home_page_view.dart';
 import 'package:personal_portfolio/views/game/game_page_view.dart';
@@ -309,6 +310,42 @@ class HomePage extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: size.height * 0.9,
+                        width: (size.width - 100) / 2,
+                        child: Center(
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                height: size.height * 0.85,
+                                width: ((size.width - 100) / 2) * 0.45,
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: Offset(15, 10),
+                                        blurRadius: 40,
+                                        color: Colors.black)
+                                  ],
+                                  image: DecorationImage(
+                                      image: AssetImage('images/body.png'),
+                                      fit: BoxFit.fill),
+                                ),
+                              ),
+                              GetBuilder(
+                                  init: GameController(),
+                                  builder: (GameController controller) {
+                                    return BudgetAppHomeScreen();
+                                  }),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

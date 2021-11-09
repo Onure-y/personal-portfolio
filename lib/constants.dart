@@ -42,3 +42,8 @@ final kPrimaryGradient = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
 );
+
+// Budget App Constant Values
+
+final TextStyle navBarTextStyle = GoogleFonts.lato(
+    fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black);
