@@ -56,7 +56,7 @@ class MySecondaryPainter extends CustomPainter {
           ), // 5.
           degToRad(120), // 6.
           degToRad(360), // 7.
-          false);
+          true);
 
     canvas.drawPath(path, paint); // 8.
   }

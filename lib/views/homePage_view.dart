@@ -336,11 +336,7 @@ class HomePage extends StatelessWidget {
                                       fit: BoxFit.fill),
                                 ),
                               ),
-                              GetBuilder(
-                                  init: GameController(),
-                                  builder: (GameController controller) {
-                                    return BudgetAppHomeScreen();
-                                  }),
+                              BudgetAppHomeScreen(),
                             ],
                           ),
                         ),
