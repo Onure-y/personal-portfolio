@@ -50,3 +50,9 @@ final TextStyle navBarTextStyle = GoogleFonts.lato(
 
 final TextStyle budgetTextStyle = GoogleFonts.lato(
     fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black);
+
+final TextStyle intreactionTitleTextStyle =
+    GoogleFonts.lato(fontSize: 16, color: Colors.black);
+
+final TextStyle intreactionTextStyle = GoogleFonts.lato(
+    fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black);

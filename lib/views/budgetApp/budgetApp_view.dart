@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:personal_portfolio/components/BudgetAppComp/budgetAppContainer_comp.dart';
+import 'package:personal_portfolio/components/BudgetAppComp/interaction_comp.dart';
 import 'package:personal_portfolio/components/BudgetAppComp/myPainter_comp.dart';
 import 'package:personal_portfolio/constants.dart';
 import 'package:personal_portfolio/controllers/budgetApp_controller.dart';
@@ -42,35 +44,73 @@ class BudgetAppHomeScreen extends StatelessWidget {
                 Container(
                   height: 210,
                   width: size.width * 4,
-                  child: ListView(
-                    shrinkWrap: true,
+                  child: CustomScrollView(
+                    controller: controller.scrollController,
                     scrollDirection: Axis.horizontal,
-                    children: [
-                      BudgetAppContainer(
-                        balanceModel: BalanceModel(
-                          text: 'Total Money',
-                          totalBalance: controller.balance,
-                          balanceRad: 360,
-                          loanRad: 0,
-                        ),
-                      ),
-                      BudgetAppContainer(
-                        balanceModel: BalanceModel(
-                          text: 'Total Balance',
-                          totalBalance: controller.userTotalBalance,
-                          balanceRad: controller.balanceRad,
-                          loanRad: controller.loanRad,
-                        ),
-                      ),
-                      BudgetAppContainer(
-                        balanceModel: BalanceModel(
-                          text: 'Total Loan',
-                          totalBalance: controller.loan,
-                          balanceRad: 0,
-                          loanRad: 360,
-                        ),
-                      ),
+                    physics: NeverScrollableScrollPhysics(),
+                    slivers: [
+                      SliverFixedExtentList(
+                          delegate: SliverChildListDelegate([
+                            BudgetAppContainer(
+                              balanceModel: BalanceModel(
+                                text: 'Total Balance',
+                                totalBalance: controller.userTotalBalance,
+                                balanceRad: controller.balanceRad,
+                                loanRad: controller.loanRad,
+                              ),
+                            ),
+                            BudgetAppContainer(
+                              balanceModel: BalanceModel(
+                                text: 'Total Money',
+                                totalBalance: controller.balance,
+                                balanceRad: 360,
+                                loanRad: 0,
+                              ),
+                            ),
+                            BudgetAppContainer(
+                              balanceModel: BalanceModel(
+                                text: 'Total Loan',
+                                totalBalance: controller.loan,
+                                balanceRad: 0,
+                                loanRad: 360,
+                              ),
+                            ),
+                          ]),
+                          itemExtent: ((size.width - 100) / 2) * 0.415)
                     ],
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(10.0),
+                    width: ((size.width - 100) / 2) * 0.415,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Last Interaction',
+                            style: intreactionTitleTextStyle),
+                        Divider(),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InteractionComp(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              InteractionComp(),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              InteractionComp(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
