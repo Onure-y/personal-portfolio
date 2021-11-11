@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:personal_portfolio/constants.dart';
 
 class InteractionComp extends StatelessWidget {
-  const InteractionComp({Key? key}) : super(key: key);
+  const InteractionComp(
+      {Key? key, required this.text, required this.money, required this.isLoan})
+      : super(key: key);
+  final String text;
+  final String money;
+  final bool isLoan;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +26,8 @@ class InteractionComp extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Rise Software', style: intreactionTextStyle),
-          Text('355 TL')
+          Text(text, style: intreactionTextStyle),
+          Text('$money TL', style: isLoan ? loanTextStyle : balanceTextStyle)
         ],
       ),
     );

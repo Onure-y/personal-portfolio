@@ -35,7 +35,12 @@ class BudgetAppHomeScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.person),
+                      InkWell(
+                        child: Icon(Icons.person),
+                        onTap: () {
+                          controller.changeMenuState();
+                        },
+                      ),
                       Text('Onur', style: navBarTextStyle),
                       Icon(Icons.settings),
                     ],
@@ -97,15 +102,24 @@ class BudgetAppHomeScreen extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              InteractionComp(),
+                              InteractionComp(
+                                  text: 'Rise Software',
+                                  money: '350',
+                                  isLoan: false),
                               SizedBox(
                                 height: 10,
                               ),
-                              InteractionComp(),
+                              InteractionComp(
+                                  text: 'Ensar Batuhan',
+                                  money: '760',
+                                  isLoan: true),
                               SizedBox(
                                 height: 10,
                               ),
-                              InteractionComp(),
+                              InteractionComp(
+                                  text: 'Extra Software',
+                                  money: '250',
+                                  isLoan: false),
                             ],
                           ),
                         ),

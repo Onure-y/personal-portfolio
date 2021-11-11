@@ -54,5 +54,21 @@ final TextStyle budgetTextStyle = GoogleFonts.lato(
 final TextStyle intreactionTitleTextStyle =
     GoogleFonts.lato(fontSize: 16, color: Colors.black);
 
+final TextStyle balanceTextStyle = GoogleFonts.lato(
+    fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green);
+final TextStyle loanTextStyle = GoogleFonts.lato(
+    fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red);
+
 final TextStyle intreactionTextStyle = GoogleFonts.lato(
     fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black);
+
+final TextStyle menuTitleTextStyle = GoogleFonts.lato(
+    fontSize: 18, fontWeight: FontWeight.w800, color: Colors.black);
+
+// ChatBot Constant Values
+
+final TextStyle chatBotTitleStyle =
+    GoogleFonts.lato(fontSize: 18, color: Colors.white);
+
+final TextStyle chatBotMessageStyle =
+    GoogleFonts.lato(fontSize: 16, color: Colors.white);

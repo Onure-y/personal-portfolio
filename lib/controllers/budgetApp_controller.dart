@@ -24,6 +24,13 @@ class BudgetAppController extends GetxController {
 
   int currentIndex = 0;
 
+  bool isMenuOpen = false;
+
+  void changeMenuState() {
+    isMenuOpen = !isMenuOpen;
+    update();
+  }
+
   void moveToRight(double offSet) {
     double currentOffset = currentIndex == 2 ? 0 : offSet * (currentIndex + 1);
     print('currentindex = $currentIndex currentOffset = $currentOffset');
