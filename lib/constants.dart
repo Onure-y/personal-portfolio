@@ -72,3 +72,9 @@ final TextStyle chatBotTitleStyle =
 
 final TextStyle chatBotMessageStyle =
     GoogleFonts.lato(fontSize: 16, color: Colors.white);
+
+final TextStyle sendMessageTextStyle =
+    GoogleFonts.lato(fontSize: 14, color: Colors.white54);
+
+final TextStyle textFormFieldStly =
+    GoogleFonts.lato(fontSize: 14, color: Colors.black);

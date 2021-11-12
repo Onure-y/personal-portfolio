@@ -5,12 +5,14 @@ import 'package:personal_portfolio/constants.dart';
 import 'package:personal_portfolio/controllers/budgetApp_controller.dart';
 import 'package:personal_portfolio/controllers/chatBot_controller.dart';
 import 'package:personal_portfolio/controllers/game_controller.dart';
+import 'package:personal_portfolio/views/budgetApp/budgetApp_addTransaction_view.dart';
 import 'package:personal_portfolio/views/budgetApp/budgetApp_menu_view.dart';
 import 'package:personal_portfolio/views/budgetApp/budgetApp_view.dart';
 import 'package:personal_portfolio/views/game/game_end_page_view.dart';
 import 'package:personal_portfolio/views/game/game_home_page_view.dart';
 import 'package:personal_portfolio/views/game/game_page_view.dart';
 import 'package:get/get.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -210,15 +212,69 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   GetBuilder<ChatBotController>(
+                    init: ChatBotController(),
+                    builder: (ChatBotController controller) {
+                      if (controller.isChatBotOpen) {
+                        return Align(
+                          alignment: Alignment(0.9, 0),
+                          child: Container(
+                            padding: EdgeInsets.all(30.0),
+                            width: (size.width - 60) * 0.33,
+                            height: size.height * 0.8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  backgroundGradientColor2,
+                                  backgroundGradientColor1,
+                                ],
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Chat Bot', style: chatBotTitleStyle),
+                                    InkWell(
+                                      child: Icon(Icons.cancel,
+                                          color: backgroundGradientColor2),
+                                      onTap: () {
+                                        controller.changeChatBotState();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Divider(color: Colors.white),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                ChatBot(),
+                              ],
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Container();
+                      }
+                    },
+                  ),
+                  GetBuilder<ChatBotController>(
                       init: ChatBotController(),
                       builder: (ChatBotController controller) {
-                        if (controller.isChatBotOpen) {
+                        if (controller.isEmailScreenOpen) {
                           return Align(
                             alignment: Alignment(0.9, 0),
                             child: Container(
-                              padding: EdgeInsets.all(30.0),
-                              width: (size.width - 60) * 0.33,
-                              height: size.height * 0.8,
+                              width: (size.width - 60) * 0.23,
+                              height: size.height * 0.85,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 gradient: LinearGradient(
@@ -233,29 +289,213 @@ class HomePage extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text('Chat Bot',
-                                          style: chatBotTitleStyle),
-                                      InkWell(
-                                        child: Icon(Icons.cancel,
-                                            color: backgroundGradientColor2),
-                                        onTap: () {
-                                          controller.changeChatBotState();
-                                        },
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        InkWell(
+                                          child: Icon(Icons.cancel,
+                                              color: backgroundGradientColor2),
+                                          onTap: () {
+                                            controller.changeEmailScreenState();
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  SizedBox(
-                                    height: 10,
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 30,
+                                    ),
+                                    width: (size.width - 60) * 0.25,
+                                    height: 200,
+                                    color: Color(0xff102027),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Container(
+                                          height: 60,
+                                          width: 60,
+                                          child: CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                              'images/avatar.jpg',
+                                            ),
+                                          ),
+                                        ),
+                                        Text('Hi!', style: chatBotTitleStyle),
+                                        Text('Messege Me',
+                                            style: sendMessageTextStyle),
+                                      ],
+                                    ),
                                   ),
-                                  Divider(color: Colors.white),
-                                  SizedBox(
-                                    height: 10,
+                                  Flexible(
+                                    child: !controller.isEmailSended
+                                        ? SingleChildScrollView(
+                                            child: Container(
+                                              padding: EdgeInsets.all(20.0),
+                                              color: Colors.white,
+                                              height: size.height * 0.85 - 200,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  TextFormField(
+                                                    controller: controller
+                                                        .nameController,
+                                                    decoration: InputDecoration(
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20.0),
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black,
+                                                            width: 1),
+                                                      ),
+                                                      border:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black,
+                                                            width: 1),
+                                                      ),
+                                                      labelStyle:
+                                                          textFormFieldStly,
+                                                      labelText: 'Name',
+                                                    ),
+                                                  ),
+                                                  TextFormField(
+                                                    controller: controller
+                                                        .emailController,
+                                                    decoration: InputDecoration(
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20.0),
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black,
+                                                            width: 1),
+                                                      ),
+                                                      border:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black,
+                                                            width: 1),
+                                                      ),
+                                                      labelStyle:
+                                                          textFormFieldStly,
+                                                      labelText: 'Subject',
+                                                    ),
+                                                  ),
+                                                  TextFormField(
+                                                    keyboardType: TextInputType
+                                                        .emailAddress,
+                                                    controller: controller
+                                                        .subjectController,
+                                                    decoration: InputDecoration(
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20.0),
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black,
+                                                            width: 1),
+                                                      ),
+                                                      border:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black,
+                                                            width: 1),
+                                                      ),
+                                                      labelStyle:
+                                                          textFormFieldStly,
+                                                      labelText: 'Email',
+                                                    ),
+                                                  ),
+                                                  TextFormField(
+                                                    keyboardType:
+                                                        TextInputType.text,
+                                                    maxLines: 7,
+                                                    minLines: 3,
+                                                    controller: controller
+                                                        .messageController,
+                                                    decoration: InputDecoration(
+                                                      isDense:
+                                                          true, // Added this
+
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20.0),
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black,
+                                                            width: 1),
+                                                      ),
+                                                      border:
+                                                          OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black,
+                                                            width: 1),
+                                                      ),
+                                                      labelStyle:
+                                                          textFormFieldStly,
+                                                      labelText:
+                                                          'How can i help',
+                                                    ),
+                                                  ),
+                                                  ElevatedButton(
+                                                      onPressed: () {
+                                                        controller
+                                                            .setMailSettings();
+                                                        controller
+                                                            .printMailSettings();
+                                                      },
+                                                      child: Text('Send'),
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        minimumSize:
+                                                            Size(75, 50),
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.0),
+                                                        ),
+                                                      )),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            padding: EdgeInsets.all(20.0),
+                                            height: size.height * 0.85 - 200,
+                                            width: (size.width - 60) * 0.25,
+                                            color: Colors.white,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                FaIcon(
+                                                  FontAwesomeIcons.checkCircle,
+                                                  color: Colors.green,
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  'Your Message Has Been Sended',
+                                                  style: textFormFieldStly,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                   ),
-                                  ChatBot(),
                                 ],
                               ),
                             ),
@@ -263,7 +503,7 @@ class HomePage extends StatelessWidget {
                         } else {
                           return Container();
                         }
-                      }),
+                      })
                 ],
               ),
               Container(
@@ -424,6 +664,9 @@ class HomePage extends StatelessWidget {
                                   builder: (BudgetAppController controller) {
                                     if (controller.isMenuOpen) {
                                       return BudgetAppMenuScreen();
+                                    }
+                                    if (controller.isAddTransactionPageOpen) {
+                                      return BudgetAppAddTransactionScreen();
                                     } else {
                                       return BudgetAppHomeScreen();
                                     }

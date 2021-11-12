@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:personal_portfolio/components/BudgetAppComp/budgetAppContainer_comp.dart';
 import 'package:personal_portfolio/components/BudgetAppComp/interaction_comp.dart';
-import 'package:personal_portfolio/components/BudgetAppComp/myPainter_comp.dart';
 import 'package:personal_portfolio/constants.dart';
 import 'package:personal_portfolio/controllers/budgetApp_controller.dart';
 import 'package:personal_portfolio/models/balance_model.dart';
@@ -101,26 +100,31 @@ class BudgetAppHomeScreen extends StatelessWidget {
                         Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InteractionComp(
-                                  text: 'Rise Software',
-                                  money: '350',
-                                  isLoan: false),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              InteractionComp(
-                                  text: 'Ensar Batuhan',
-                                  money: '760',
-                                  isLoan: true),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              InteractionComp(
-                                  text: 'Extra Software',
-                                  money: '250',
-                                  isLoan: false),
-                            ],
+                            children: List.generate(3, (index) {
+                              List lastInteractions =
+                                  controller.allTransactions;
+                              return Column(
+                                children: [
+                                  InteractionComp(
+                                    text: lastInteractions[
+                                            (lastInteractions.length - 1) -
+                                                index]
+                                        .text,
+                                    money: lastInteractions[
+                                            (lastInteractions.length - 1) -
+                                                index]
+                                        .money,
+                                    isLoan: lastInteractions[
+                                            (lastInteractions.length - 1) -
+                                                index]
+                                        .isLoan,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  )
+                                ],
+                              );
+                            }),
                           ),
                         ),
                       ],

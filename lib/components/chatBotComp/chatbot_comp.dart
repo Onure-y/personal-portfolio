@@ -13,7 +13,7 @@ class ChatBot extends StatelessWidget {
         init: ChatBotController(),
         builder: (ChatBotController controller) {
           return Container(
-            width: (size.width - 60) * 0.35,
+            width: (size.width - 60) * 0.3,
             height: size.height * 0.6,
             padding: EdgeInsets.all(20.0),
             decoration: BoxDecoration(
@@ -28,8 +28,10 @@ class ChatBot extends StatelessWidget {
                     (BuildContext context, int index) {
                       var chatList = controller.allAnswers;
                       return ChatBotMessage(
-                          text: chatList[index].text,
-                          isUserMessage: chatList[index].isUserMessage);
+                        text: chatList[index].text,
+                        isUserMessage: chatList[index].isUserMessage,
+                        ishiMessage: chatList[index].hiMessage,
+                      );
                     },
                     childCount: controller.allAnswers.length,
                   ),

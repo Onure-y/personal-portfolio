@@ -53,6 +53,7 @@ class GameController extends GetxController with SingleGetTickerProviderMixin {
 
   void checkAnswer(answer, choisedAnswer, currentIndex) async {
     allQuestions[currentIndex].isAnswered = true;
+    update();
     if (answer == choisedAnswer) {
       correctAnswers++;
     }

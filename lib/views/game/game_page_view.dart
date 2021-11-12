@@ -23,7 +23,7 @@ class GameScreen extends GetWidget<GameController> {
           init: GameController(),
           builder: (GameController controller) {
             return PageView.builder(
-              // physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               itemCount: 3,
               controller: controller.pageController,
               itemBuilder: (BuildContext context, int currentPageIndex) {

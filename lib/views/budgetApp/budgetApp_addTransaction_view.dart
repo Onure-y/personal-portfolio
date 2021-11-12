@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:personal_portfolio/constants.dart';
 import 'package:personal_portfolio/controllers/budgetApp_controller.dart';
 
-class BudgetAppMenuScreen extends StatelessWidget {
-  const BudgetAppMenuScreen({Key? key}) : super(key: key);
+class BudgetAppAddTransactionScreen extends StatelessWidget {
+  const BudgetAppAddTransactionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,29 +28,23 @@ class BudgetAppMenuScreen extends StatelessWidget {
                       InkWell(
                         child: Icon(Icons.arrow_back),
                         onTap: () {
-                          controller.changeMenuState();
+                          controller.changeAddTransactionPageState();
                         },
                       ),
                       SizedBox(
                         width: 20,
                       ),
-                      Text('Menu', style: menuTitleTextStyle),
+                      Text('Add Transaction', style: menuTitleTextStyle),
                     ],
                   ),
                 ),
-                Container(
-                  width: ((size.width - 100) / 2) * 0.415,
-                  height: 300,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: Icon(Icons.add),
-                        title: Text('Add Transaction'),
-                        onTap: () {
-                          controller.changeAddTransactionPageState();
-                        },
-                      ),
-                    ],
+                Flexible(
+                  child: Container(
+                    width: ((size.width - 100) / 2) * 0.415,
+                    color: Colors.blue,
+                    child: Column(
+                      children: [],
+                    ),
                   ),
                 ),
               ],
