@@ -1,0 +1,29 @@
+{
+    "allQuestions" : 
+    [
+        {
+        "question" : "What is Pisces's lucky day known as?",
+        "answer" : "Thursday",
+        "options" : ["Monday","Thursday","Friday","Saturday"]
+        },
+    
+        {
+        "question" : "What is the foreground attitude in Aquarius Relationships?",
+        "answer" : "Logic",
+        "options" : ["Freedom","Loyalty","Logic","Trust"]
+        },
+        
+        {
+        "question" : "What are the ruling planets of people born within the first ten days of Cancer? ",
+        "answer" : "Venus",
+        "options" : ["Mercury","Mars","Venus","Uranus"]
+        },
+
+        {
+        "question" : "Which of these things would an Aquarian prefer to do to relax? ",
+        "answer" : "Listen to music",
+        "options" : ["Cook something","Swap jokes with friends","Listen to music","Stroke their pet"]
+        }
+
+    ]
+}
