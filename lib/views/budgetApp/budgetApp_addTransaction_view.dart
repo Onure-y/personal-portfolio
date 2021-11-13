@@ -41,9 +41,69 @@ class BudgetAppAddTransactionScreen extends StatelessWidget {
                 Flexible(
                   child: Container(
                     width: ((size.width - 100) / 2) * 0.415,
-                    color: Colors.blue,
                     child: Column(
-                      children: [],
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: ((size.width - 100) / 2) * 0.415,
+                            height: 150,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(50.0),
+                                  child: TextFormField(
+                                    enabled: false,
+                                    controller: controller.priceController,
+                                    decoration: InputDecoration(
+                                      labelText: controller.priceValue,
+                                      labelStyle: numKeyboardsStyle,
+                                      suffixText: 'TL',
+                                      isDense: true,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        // Spacer(),
+                        Container(
+                          width: ((size.width - 100) / 2) * 0.415,
+                          child: GridView.count(
+                            crossAxisCount: 4,
+                            shrinkWrap: true,
+                            children: List.generate(
+                              16,
+                              (index) {
+                                return Material(
+                                  child: InkWell(
+                                    onTap: controller
+                                                .numKeyboards[index].text ==
+                                            ''
+                                        ? null
+                                        : controller.numKeyboards[index].text !=
+                                                'OK'
+                                            ? () => controller
+                                                .addValueToTransactionList(
+                                                    controller
+                                                        .numKeyboards[index]
+                                                        .text)
+                                            : () {},
+                                    child: Container(
+                                      child: Center(
+                                        child: Text(
+                                          controller.numKeyboards[index].text,
+                                          style: numKeyboardsStyle,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

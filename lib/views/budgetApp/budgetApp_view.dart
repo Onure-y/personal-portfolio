@@ -73,7 +73,7 @@ class BudgetAppHomeScreen extends StatelessWidget {
                             ),
                             BudgetAppContainer(
                               balanceModel: BalanceModel(
-                                text: 'Total Loan',
+                                text: 'Total Withdrawal',
                                 totalBalance: controller.loan,
                                 balanceRad: 0,
                                 loanRad: 360,

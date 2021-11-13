@@ -78,3 +78,6 @@ final TextStyle sendMessageTextStyle =
 
 final TextStyle textFormFieldStly =
     GoogleFonts.lato(fontSize: 14, color: Colors.black);
+
+final TextStyle numKeyboardsStyle = GoogleFonts.lato(
+    fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black);
